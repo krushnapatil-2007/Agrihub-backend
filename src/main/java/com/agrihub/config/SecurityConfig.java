@@ -23,7 +23,10 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll() // allow login/register
                 .anyRequest().authenticated()
             )
-            .httpBasic(httpBasic -> {}); // optional
+            .formLogin(form -> form.disable())   // disable default login page
+            .httpBasic(basic -> basic.disable()); // disable browser popup login
+
+          
 
         return http.build();
     }
